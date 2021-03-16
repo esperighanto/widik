@@ -1,0 +1,155 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.2
+-- Dumped by pg_dump version 13.2
+
+-- Started on 2021-03-16 13:35:12
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 202 (class 1259 OID 16480)
+-- Name: accounts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.accounts (
+    id integer NOT NULL,
+    username character varying NOT NULL,
+    email character varying NOT NULL,
+    password character varying NOT NULL,
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    favorite_words integer[]
+);
+
+
+ALTER TABLE public.accounts OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 16478)
+-- Name: accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.accounts_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.accounts_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3000 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.accounts_id_seq OWNED BY public.accounts.id;
+
+
+--
+-- TOC entry 200 (class 1259 OID 16425)
+-- Name: words; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.words (
+    id integer NOT NULL,
+    definition character varying,
+    wordtype character varying,
+    examplesentence character varying,
+    word character varying
+);
+
+
+ALTER TABLE public.words OWNER TO postgres;
+
+--
+-- TOC entry 2856 (class 2604 OID 16483)
+-- Name: accounts id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.accounts ALTER COLUMN id SET DEFAULT nextval('public.accounts_id_seq'::regclass);
+
+
+--
+-- TOC entry 2994 (class 0 OID 16480)
+-- Dependencies: 202
+-- Data for Name: accounts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.accounts (id, username, email, password, created_at, favorite_words) FROM stdin;
+2	tommyroyall3	esperighnto@gmail.com	Letmein721!	2021-03-13 16:42:15.43702-05	\N
+3	toyall3r54rt67gyhu	esghnto@gmail.com	Abcd721!	2021-03-13 16:42:46.687692-05	\N
+4	ahbd	eshy@gmaic.com	hjkl	2021-03-13 16:43:24.619147-05	\N
+5	hjkl	ahd@ghufjoe.com	uiop	2021-03-13 16:43:36.028179-05	\N
+6	hjk	gh	hjk	2021-03-13 17:22:58.944699-05	\N
+7	jk	hj	kl	2021-03-13 17:32:02.552952-05	\N
+1	tommyroyall	esperighanto@gmail.com	Letmein721!	2021-03-13 16:42:01.556765-05	{5,2,2,2,2,2,2,2,2,3,4,1,1}
+\.
+
+
+--
+-- TOC entry 2992 (class 0 OID 16425)
+-- Dependencies: 200
+-- Data for Name: words; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.words (id, definition, wordtype, examplesentence, word) FROM stdin;
+1	The branch of metaphysics dealing with the nature of being.;A set of concepts and categories in a subject area or domain that shows their properties and the relations between them.	noun	Ontology is a common talking point in the world of philosophy.	Ontology
+2	(of a person) Subject to sudden or unpredictable changes of mood or mind.	adjective	Warhawks are among the most mercurial politicians.	Mercurial
+3	The use of trickery to achieve a political, financial, or legal purpose.	noun	Chicanery is unilaterally frowned upon in the world of politics and law.	Chicanery
+4	A scene of uproar and confusion.;Archaically, an institution for the care of mentally ill people.	noun	Bedlam was originally a London psychiatric institution.	Bedlam
+5	Adorn (a place) with ribbons, garlands, or other decorations.;A chain or garland of flowers, leaves, or ribbons, hung in a curve as a decoration.	noun	Festoons have become a trendy decoration for outdoor weddings.	Festoon
+\.
+
+
+--
+-- TOC entry 3001 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: accounts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.accounts_id_seq', 7, true);
+
+
+--
+-- TOC entry 2861 (class 2606 OID 16489)
+-- Name: accounts accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.accounts
+    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2859 (class 2606 OID 16432)
+-- Name: words words_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.words
+    ADD CONSTRAINT words_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2021-03-16 13:35:12
+
+--
+-- PostgreSQL database dump complete
+--
+
